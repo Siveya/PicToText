@@ -9,14 +9,20 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(OpenCV_DIR C:/Users/Siweya/Downloads/opencv-4.7.0-MinGW)
+find_package(OpenCV REQUIRED)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+
+include_directories(${OpenCV_INCLUDE_DIRS})
 
 set(PROJECT_SOURCES
         src/main.cpp
         src/mainwindow.cpp
         src/mainwindow.h
         src/mainwindow.ui
+        src/OpenCV.h
+        src/OpenCV.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -42,7 +48,7 @@ else()
     endif()
 endif()
 
-target_link_libraries(PicToText PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(PicToText PRIVATE Qt${QT_VERSION_MAJOR}::Widgets ${OpenCV_LIBS})
 
 set_target_properties(PicToText PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
