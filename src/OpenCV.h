@@ -18,6 +18,7 @@ private:
     tesseract::TessBaseAPI *ocr;
     cv::Mat PreprocessImage(cv::Mat image);
     cv::Rect DetectTextRegion(cv::Mat image);
+    cv::Mat CreatePerspectiveMatrix();
 
 };
 
